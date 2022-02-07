@@ -11,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class Driver {
 
     private Driver(){}
@@ -29,6 +31,12 @@ public class Driver {
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(new ChromeOptions().setHeadless(true));
+                    break;
+                case "chrome-ssl":
+                    WebDriverManager.chromedriver().setup();
+                    ChromeOptions options = new ChromeOptions();
+                    options.setAcceptInsecureCerts(true);
+                    driver = new ChromeDriver(options);
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
@@ -57,6 +65,9 @@ public class Driver {
                     driver = new SafariDriver();
                     break;
             }
+
+            Driver.get().manage().window().maximize();
+            Driver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         }
 
 
