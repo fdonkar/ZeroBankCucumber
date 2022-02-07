@@ -23,7 +23,7 @@ Feature: Navigating to specific accounts in Accounts Activity
     When the user clicks on "Credit Card" link on the Account Summary page
     Then the "Account Activity" page should be displayed
     And Account	drop down should have "Credit Card" selected
-  @wip
+
   Scenario: Loan account redirect
     Given the user is logged in
     When the user clicks on "Loan" link on the Account Summary page
