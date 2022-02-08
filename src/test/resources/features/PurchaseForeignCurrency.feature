@@ -1,10 +1,11 @@
 Feature: Purchase Foreign Currency
 
-  @wip
-  Scenario: Available currencies
+  Background:
     Given the user is logged in
     And the user accesses Pay Bills page
-    When the user accesses the Purchase Foreign Currency tab
+    And the user accesses the Purchase Foreign Currency tab
+
+  Scenario: Available currencies
     Then following currencies should be available
       | Australia (dollar)    |
       | Canada (dollar)       |
@@ -19,3 +20,7 @@ Feature: Purchase Foreign Currency
       | New Zealand (dollar)  |
       | Singapore (dollar)    |
 
+  @wip
+  Scenario: Error message for not selecting currency
+    When user tries to calculate cost without selecting a currency
+    Then error message should be displayed

@@ -32,4 +32,10 @@ public class PayBillsPage extends BasePage{
     @FindBy(id = "pc_currency")
     public WebElement currencyDropdown;
 
+    @FindBy(id = "pc_amount")
+    public WebElement amountOfCurrency;
+
+    @FindBy(id = "pc_calculate_costs")
+    public WebElement calculateCosts;
+
 }
