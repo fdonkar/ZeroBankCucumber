@@ -67,10 +67,7 @@ public class FindTransactionsStepDefs {
 
     @Then("results table should only show descriptions containing {string}")
     public void results_table_should_only_show_descriptions_containing(String description) {
-        List<String> descriptionsText = BrowserUtils.getElementsText(accountActivityPage.transactionsDescription);
-        for (String each : descriptionsText) {
-            Assert.assertTrue(each.contains(description));
-        }
+        Assert.assertTrue("results NOT contain " + description,accountActivityPage.isContains(description));
 
     }
 

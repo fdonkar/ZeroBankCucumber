@@ -1,6 +1,8 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -92,4 +94,20 @@ public class AccountActivityPage extends BasePage{
         return datesFromPage;
     }
 
+    public boolean isContains(String description){
+        boolean flag = true;
+        List<String> descriptionsText = BrowserUtils.getElementsText(transactionsDescription);
+        System.out.println(descriptionsText);
+        if (descriptionsText.size()==0){
+            flag = false;
+        }
+
+        for (String each : descriptionsText) {
+            if (!each.contains(description)){
+                flag = false;
+            }
+
+        }
+        return flag;
+    }
 }
