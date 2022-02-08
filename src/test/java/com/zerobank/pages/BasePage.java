@@ -17,5 +17,8 @@ public class BasePage {
     @FindBy(css = "#account_activity_tab")
     public WebElement accountActivity;
 
+    @FindBy(linkText = "Pay Bills")
+    public WebElement payBills;
+
 
 }
