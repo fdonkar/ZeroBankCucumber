@@ -41,8 +41,70 @@ public class AccountActivityPage extends BasePage{
     @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tbody/tr/td[2]")
     public List<WebElement> transactionsDescription;
 
+    @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tbody/tr/td[3]")
+    public List<WebElement> transactionsDeposit;
+
+    @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tbody/tr/td[4]")
+    public List<WebElement> transactionsWithdrawal;
+
     @FindBy(id = "aa_description")
     public WebElement description;
+
+    @FindBy(id = "aa_type")
+    public WebElement typeDropdown;
+
+
+    public boolean atLeastOneResult(String type){
+        boolean flag = false;
+
+        if (type.equalsIgnoreCase("Deposit")){
+            for (WebElement element : transactionsDeposit) {
+                if (!element.getText().isEmpty()){
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        if (type.equalsIgnoreCase("Withdrawal")){
+            for (WebElement element : transactionsWithdrawal) {
+                if (!element.getText().isEmpty()){
+                    flag = true;
+                    break;
+                }
+            }
+        }
+
+        return flag;
+    }
+
+    public boolean isEmptyResult(String type){
+        boolean flag = true;
+
+        if (type.equalsIgnoreCase("Deposit")){
+            for (WebElement element : transactionsDeposit) {
+                if (!element.getText().isEmpty()){
+                    flag = false;
+                    break;
+                }
+            }
+        }
+
+        if (type.equalsIgnoreCase("Withdrawal")){
+            for (WebElement element : transactionsWithdrawal) {
+                if (!element.getText().isEmpty()){
+                    flag = false;
+                    break;
+                }
+            }
+        }
+
+        return flag;
+    }
+
+    public void selectType(String option){
+        Select select = new Select(typeDropdown);
+        select.selectByVisibleText(option);
+    }
 
     public String getAccountSelected(){
         Select select = new Select(accountDropdown);

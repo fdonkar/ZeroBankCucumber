@@ -78,4 +78,23 @@ public class FindTransactionsStepDefs {
             Assert.assertFalse(each.contains(excludeDescription));
         }
     }
+
+    @Then("results table should show at least one result under {string}")
+    public void results_table_should_show_at_least_one_result_under(String type) {
+        Assert.assertTrue("list is EMPTY",accountActivityPage.atLeastOneResult(type));
+    }
+
+    @Then("results table should show no result under {string}")
+    public void results_table_should_show_no_result_under(String type) {
+        Assert.assertTrue("list is NOT empty", accountActivityPage.isEmptyResult(type));
+    }
+
+    @When("user selects type {string}")
+    public void user_selects_type(String option) {
+        accountActivityPage.selectType(option);
+    }
+
+
+
+
 }
