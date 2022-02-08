@@ -25,4 +25,11 @@ public class PayBillsPage extends BasePage{
 
     @FindBy(id = "add_new_payee")
     public WebElement addButton;
+
+    @FindBy(linkText = "Purchase Foreign Currency")
+    public WebElement purchaseForeignCurrencyTab;
+
+    @FindBy(id = "pc_currency")
+    public WebElement currencyDropdown;
+
 }

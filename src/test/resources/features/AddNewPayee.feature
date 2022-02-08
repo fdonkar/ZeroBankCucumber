@@ -1,5 +1,5 @@
 Feature: Add new payee under pay bills
-@wip
+
   Scenario: Add a new page
     Given the user is logged in
     And the user accesses Pay Bills page
