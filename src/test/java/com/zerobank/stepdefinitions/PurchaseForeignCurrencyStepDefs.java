@@ -53,4 +53,13 @@ public class PurchaseForeignCurrencyStepDefs {
         String expectedMessage = "Please, ensure that you have filled all the required fields with valid values.";
         Assert.assertEquals(expectedMessage,alertText);
     }
+
+    @When("user tries to calculate cost without entering a value")
+    public void userTriesToCalculateCostWithoutEnteringAValue() {
+        Select select = new Select(payBillsPage.currencyDropdown);
+        select.selectByValue("EUR");
+        String selectedOption = select.getFirstSelectedOption().getText();
+        System.out.println("selectedOption = " + selectedOption);
+        payBillsPage.calculateCosts.click();
+    }
 }
