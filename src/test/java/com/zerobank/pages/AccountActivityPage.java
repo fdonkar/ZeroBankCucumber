@@ -36,6 +36,12 @@ public class AccountActivityPage extends BasePage{
     @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tbody/tr/td[1]")
     public List<WebElement> transactionsDates;
 
+    @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tbody/tr/td[2]")
+    public List<WebElement> transactionsDescription;
+
+    @FindBy(id = "aa_description")
+    public WebElement description;
+
     public String getAccountSelected(){
         Select select = new Select(accountDropdown);
         String actualResult = select.getFirstSelectedOption().getText();

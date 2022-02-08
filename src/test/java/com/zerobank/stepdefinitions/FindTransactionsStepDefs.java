@@ -58,4 +58,27 @@ public class FindTransactionsStepDefs {
         accountActivityPage.findButton.click();
         BrowserUtils.waitFor(1);
     }
+
+    @When("the user enters description {string}")
+    public void the_user_enters_description(String description) {
+        accountActivityPage.description.clear();
+        accountActivityPage.description.sendKeys(description);
+    }
+
+    @Then("results table should only show descriptions containing {string}")
+    public void results_table_should_only_show_descriptions_containing(String description) {
+        List<String> descriptionsText = BrowserUtils.getElementsText(accountActivityPage.transactionsDescription);
+        for (String each : descriptionsText) {
+            Assert.assertTrue(each.contains(description));
+        }
+
+    }
+
+    @Then("results table should not show descriptions containing {string}")
+    public void results_table_should_not_show_descriptions_containing(String excludeDescription) {
+        List<String> descriptionsText = BrowserUtils.getElementsText(accountActivityPage.transactionsDescription);
+        for (String each : descriptionsText) {
+            Assert.assertFalse(each.contains(excludeDescription));
+        }
+    }
 }
