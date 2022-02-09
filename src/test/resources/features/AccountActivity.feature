@@ -1,10 +1,11 @@
-Feature: Account summary page's tabs
+Feature: Account activity page's tabs
 
   Background:
     Given the user is logged in
-
+    And the user clicks on Account Activity Page
+  @wip
   Scenario: Get page title
-    Then Account summary page should be displayed and have the title "Zero - Account Summary"
+    Then Account activity page should be displayed and have the title "Zero - Account Activity"
 
 
   Scenario: Verify account types
