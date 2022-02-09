@@ -26,4 +26,11 @@ public class AccountSummaryStepDefs {
         System.out.println("actualAccountTypes = " + actualAccountTypes);
         Assert.assertEquals("account types NOT matched", expectedAccountTypes,actualAccountTypes);
     }
+
+    @Then("Credit Accounts table should have following columns")
+    public void credit_Accounts_table_should_have_following_columns(List<String> expectedColumnNames) {
+        List<String> actualColumnNames = BrowserUtils.getElementsText(accountSummaryPage.columnsOfCreditAccountTable);
+        System.out.println("actualColumnNames = " + actualColumnNames);
+        Assert.assertEquals("column names NOT matched",expectedColumnNames,actualColumnNames);
+    }
 }
