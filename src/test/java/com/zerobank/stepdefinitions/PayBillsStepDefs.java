@@ -2,9 +2,11 @@ package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.PayBillsPage;
 import com.zerobank.utilities.Driver;
+import io.cucumber.java.cs.Ale;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,8 @@ import java.util.Date;
 public class PayBillsStepDefs {
 
     PayBillsPage payBillsPage = new PayBillsPage();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    Date date = new Date();
 
     @When("the user clicks on Pay Bills Page")
     public void the_user_clicks_on_Pay_Bills_Page() {
@@ -28,8 +32,7 @@ public class PayBillsStepDefs {
 
     @When("the user select payee and accounts and enters value for amount, date, and description")
     public void the_user_select_payee_and_accounts_and_enters_value_for_amount_date_and_description() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
+
         String currentDate = dateFormat.format(date);
         payBillsPage.dateSavedPayee.sendKeys(currentDate);
         payBillsPage.amountSavedPayee.sendKeys("100");
@@ -46,5 +49,19 @@ public class PayBillsStepDefs {
         String actualMessage = payBillsPage.warningMessage.getText();
         System.out.println("actualMessage = " + actualMessage);
         Assert.assertEquals("messages NOT matched",expectedMessage,actualMessage);
+    }
+
+    @When("the user select payee and accounts and enters value for date and description only")
+    public void the_user_select_payee_and_accounts_and_enters_value_for_date_and_description_only() {
+        String currentDate = dateFormat.format(date);
+        payBillsPage.dateSavedPayee.sendKeys(currentDate);
+        payBillsPage.descriptionSavedPayee.sendKeys("Natural Gas");
+    }
+
+    @Then("the user should not be able to pay and {string} should be displayed")
+    public void the_user_should_not_be_able_to_pay_and_should_be_displayed(String expectedMessage) {
+        String actualMessage = payBillsPage.amountSavedPayee.getAttribute("validationMessage");
+        System.out.println("actualMessage = " + actualMessage);
+        Assert.assertEquals("messages NOT matched", expectedMessage,actualMessage);
     }
 }
