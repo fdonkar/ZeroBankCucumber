@@ -7,11 +7,9 @@ Feature: Account activity page's tabs
   Scenario: Get page title
     Then Account activity page should be displayed and have the title "Zero - Account Activity"
 
-
   Scenario: Verify Account dropdown default option
     Then Account activity page should be displayed and have the title "Zero - Account Activity"
     And Account	drop down should have "Savings" selected
-
 
   Scenario: Verify Account dropdown options
     Then Account activity page should be displayed and have the title "Zero - Account Activity"
@@ -22,7 +20,6 @@ Feature: Account activity page's tabs
       | Credit Card |
       | Brokerage   |
 
-  @wip
   Scenario: Verify Transaction table's column names
     Then Account activity page should be displayed and have the title "Zero - Account Activity"
     And Transactions table should have following columns
