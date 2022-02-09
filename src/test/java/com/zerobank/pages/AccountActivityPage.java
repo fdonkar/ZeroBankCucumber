@@ -53,6 +53,8 @@ public class AccountActivityPage extends BasePage{
     @FindBy(id = "aa_type")
     public WebElement typeDropdown;
 
+    @FindBy(xpath = "//table[@class='table table-condensed table-hover']//th")
+    public List<WebElement> transactionsColumns;
 
     public boolean atLeastOneResult(String type){
         boolean flag = false;
