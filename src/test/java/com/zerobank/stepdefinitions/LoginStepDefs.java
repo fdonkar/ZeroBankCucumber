@@ -49,4 +49,12 @@ public class LoginStepDefs {
         System.out.println("actualMessage = " + actualMessage);
         Assert.assertEquals("Warning message is NOT as expected", expectedMessage,actualMessage);
     }
+
+    @When("the user enters the valid username and invalid password")
+    public void theUserEntersTheValidUsernameAndInvalidPassword() {
+        loginPage.usernameInput.sendKeys(ConfigurationReader.get("username"));
+        loginPage.passwordInput.sendKeys("pass");
+        loginPage.secondSignIn.click();
+
+    }
 }
