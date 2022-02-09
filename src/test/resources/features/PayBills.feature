@@ -22,13 +22,8 @@ Feature: Pay Bills page's tabs
     And clicks on pay button
     Then the user should not be able to pay and "Please fill out this field." should be displayed for date
 
-  Scenario: Amount field should not accept alphabetical characters
+  Scenario: Amount field should not accept alphabetical or special characters
     When the user enters alphabetical or special character "a" into the amount field
-    Then amount field should not accept alphabetical or special characters
-
-@wip
-  Scenario: Amount field should not accept special characters
-    When the user enters alphabetical or special character "," into the amount field
     Then amount field should not accept alphabetical or special characters
 
   Scenario: Date field should not accept alphabetical characters
