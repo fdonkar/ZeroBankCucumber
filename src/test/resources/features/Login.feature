@@ -19,7 +19,7 @@ Feature: Users should be able to login
     Then message "Login and/or password are wrong." should be displayed
     And the user should not be able to login
 
-  @wip
+
   Scenario: Login with blank username and password
     When the user does not enter username and password
     Then message "Login and/or password are wrong." should be displayed
