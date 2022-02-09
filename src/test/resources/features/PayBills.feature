@@ -12,14 +12,18 @@ Feature: Pay Bills page's tabs
     And clicks on pay button
     Then warning message "The payment was successfully submitted." should be displayed
 
-
   Scenario: Verify the user should not be able to pay without entering amount
     When the user select payee and accounts and enters value for date and description only
     And clicks on pay button
     Then the user should not be able to pay and "Please fill out this field." should be displayed for amount
 
-  @wip
   Scenario: Verify the user should not be able to pay without entering date
     When the user select payee and accounts and enters value for amount and description only
+    And clicks on pay button
+    Then the user should not be able to pay and "Please fill out this field." should be displayed for date
+
+  @wip
+  Scenario: Amount field should not accept alphabetical characters
+    When the user enters alphabetical character into the amount field
     And clicks on pay button
     Then the user should not be able to pay and "Please fill out this field." should be displayed for date
