@@ -3,6 +3,7 @@ package com.zerobank.stepdefinitions;
 import com.zerobank.pages.LoginPage;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -56,5 +57,18 @@ public class LoginStepDefs {
         loginPage.passwordInput.sendKeys("pass");
         loginPage.secondSignIn.click();
 
+    }
+
+    @When("the user does not enter username and password")
+    public void theUserDoesNotEnterUsernameAndPassword() {
+        loginPage.secondSignIn.click();
+    }
+
+    @And("the user should not be able to login")
+    public void theUserShouldNotBeAbleToLogin() {
+        String titleAfterLogin = "Zero - Account Summary";
+        String actualTitle = Driver.get().getTitle();
+        System.out.println("actualTitle = " + actualTitle);
+        Assert.assertNotEquals("the user logged in", titleAfterLogin,actualTitle);
     }
 }
