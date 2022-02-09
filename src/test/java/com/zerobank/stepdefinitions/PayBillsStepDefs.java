@@ -95,4 +95,17 @@ public class PayBillsStepDefs {
         System.out.println("actualText = " + actualText);
         Assert.assertEquals("Amount field accept alphabetical or special character",expectedText,actualText);
     }
+
+    @When("the user enters alphabetical into the date field")
+    public void the_user_enters_alphabetical_into_the_date_field() {
+        payBillsPage.dateSavedPayee.sendKeys("a");
+    }
+
+    @Then("date field should not accept alphabetical characters")
+    public void date_field_should_not_accept_alphabetical_characters() {
+        String expectedText = "";
+        String actualText = payBillsPage.dateSavedPayee.getAttribute("value");
+        System.out.println("actualText = " + actualText);
+        Assert.assertEquals("Date field accept alphabetical character",expectedText,actualText);
+    }
 }
