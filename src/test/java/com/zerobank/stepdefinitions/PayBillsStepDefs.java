@@ -60,7 +60,25 @@ public class PayBillsStepDefs {
 
     @Then("the user should not be able to pay and {string} should be displayed")
     public void the_user_should_not_be_able_to_pay_and_should_be_displayed(String expectedMessage) {
+
+    }
+
+    @When("the user select payee and accounts and enters value for amount and description only")
+    public void theUserSelectPayeeAndAccountsAndEntersValueForAmountAndDescriptionOnly() {
+        payBillsPage.amountSavedPayee.sendKeys("100");
+        payBillsPage.descriptionSavedPayee.sendKeys("Natural Gas");
+    }
+
+    @Then("the user should not be able to pay and {string} should be displayed for amount")
+    public void theUserShouldNotBeAbleToPayAndShouldBeDisplayedForAmount(String expectedMessage) {
         String actualMessage = payBillsPage.amountSavedPayee.getAttribute("validationMessage");
+        System.out.println("actualMessage = " + actualMessage);
+        Assert.assertEquals("messages NOT matched", expectedMessage,actualMessage);
+    }
+
+    @Then("the user should not be able to pay and {string} should be displayed for date")
+    public void theUserShouldNotBeAbleToPayAndShouldBeDisplayedForDate(String expectedMessage) {
+        String actualMessage = payBillsPage.dateSavedPayee.getAttribute("validationMessage");
         System.out.println("actualMessage = " + actualMessage);
         Assert.assertEquals("messages NOT matched", expectedMessage,actualMessage);
     }
