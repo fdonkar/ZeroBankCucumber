@@ -83,14 +83,16 @@ public class PayBillsStepDefs {
         Assert.assertEquals("messages NOT matched", expectedMessage,actualMessage);
     }
 
-    @When("the user enters alphabetical character into the amount field")
-    public void theUserEntersAlphabeticalCharacterIntoTheAmountField() {
+    @When("the user enters alphabetical or special character {string} into the amount field")
+    public void theUserEntersAlphabeticalOrSpecialCharacterIntoTheAmountField(String character) {
+        payBillsPage.amountSavedPayee.sendKeys(character);
+    }
 
+    @Then("amount field should not accept alphabetical or special characters")
+    public void amountFieldShouldNotAcceptAlphabeticalOrSpecialCharacters() {
         String expectedText = "";
-        payBillsPage.amountSavedPayee.sendKeys("aa");
         String actualText = payBillsPage.amountSavedPayee.getAttribute("value");
         System.out.println("actualText = " + actualText);
-        Assert.assertEquals("amount field accept alphabetical or special character",expectedText,actualText);
-
+        Assert.assertEquals("Amount field accept alphabetical or special character",expectedText,actualText);
     }
 }
