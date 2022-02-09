@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class AccountSummaryPage extends BasePage{
 
     @FindBy(linkText = "Savings")
@@ -12,6 +14,9 @@ public class AccountSummaryPage extends BasePage{
 
     @FindBy(linkText = "Brokerage")
     public WebElement brokerage;
+
+    @FindBy(xpath = "//h2[@class='board-header']")
+    public List<WebElement> accountTypes;
 
     public WebElement linkTextLocator(String str){
         return Driver.get().findElement(By.linkText(str));
