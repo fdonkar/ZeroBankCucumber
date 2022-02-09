@@ -35,4 +35,18 @@ public class LoginStepDefs {
         System.out.println("actualPage = " + actualPage);
         Assert.assertEquals("the user is NOT on the account summary page", expectedPage,actualPage);
     }
+
+    @When("the user enters the invalid username and valid password")
+    public void theUserEntersTheInvalidUsernameAndValidPassword() {
+        loginPage.usernameInput.sendKeys("user");
+        loginPage.passwordInput.sendKeys(ConfigurationReader.get("password"));
+        loginPage.secondSignIn.click();
+    }
+
+    @Then("message {string} should be displayed")
+    public void messageShouldBeDisplayed(String expectedMessage) {
+        String actualMessage = loginPage.warningMessage.getText();
+        System.out.println("actualMessage = " + actualMessage);
+        Assert.assertEquals("Warning message is NOT as expected", expectedMessage,actualMessage);
+    }
 }
