@@ -1,12 +1,16 @@
 package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.PayBillsPage;
+import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.cs.Ale;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -56,11 +60,7 @@ public class PayBillsStepDefs {
         String currentDate = dateFormat.format(date);
         payBillsPage.dateSavedPayee.sendKeys(currentDate);
         payBillsPage.descriptionSavedPayee.sendKeys("Natural Gas");
-    }
-
-    @Then("the user should not be able to pay and {string} should be displayed")
-    public void the_user_should_not_be_able_to_pay_and_should_be_displayed(String expectedMessage) {
-
+//        payBillsPage.amountSavedPayee.sendKeys("100");
     }
 
     @When("the user select payee and accounts and enters value for amount and description only")
@@ -74,6 +74,12 @@ public class PayBillsStepDefs {
         String actualMessage = payBillsPage.amountSavedPayee.getAttribute("validationMessage");
         System.out.println("actualMessage = " + actualMessage);
         Assert.assertEquals("messages NOT matched", expectedMessage,actualMessage);
+        boolean valid = (Boolean)((JavascriptExecutor)Driver.get()).executeScript("return arguments[0].validity.valueMissing;", payBillsPage.amountSavedPayee);
+        Assert.assertTrue("message displayed",valid);
+
+        // verify the user can NOT pay without amount field is blank.
+        // verify "The payment was successfully submitted." message is NOT displayed
+        Assert.assertTrue(payBillsPage.messageForVerifyingAmount.get(0).getText().isEmpty());
     }
 
     @Then("the user should not be able to pay and {string} should be displayed for date")

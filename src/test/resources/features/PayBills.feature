@@ -11,7 +11,7 @@ Feature: Pay Bills page's tabs
     When the user select payee and accounts and enters value for amount, date, and description
     And clicks on pay button
     Then warning message "The payment was successfully submitted." should be displayed
-
+@wip
   Scenario: Verify the user should not be able to pay without entering amount
     When the user select payee and accounts and enters value for date and description only
     And clicks on pay button

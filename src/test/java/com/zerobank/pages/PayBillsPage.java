@@ -3,6 +3,8 @@ package com.zerobank.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class PayBillsPage extends BasePage{
 
     @FindBy(linkText = "Add New Payee")
@@ -52,6 +54,9 @@ public class PayBillsPage extends BasePage{
 
     @FindBy(id = "alert_content")
     public WebElement warningMessage;
+
+    @FindBy(xpath = "//div[@id='alert_content']")
+    public List<WebElement> messageForVerifyingAmount;
 
 
 
